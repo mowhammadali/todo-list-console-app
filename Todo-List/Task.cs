@@ -11,8 +11,9 @@ interface IUserTask
 
 class UserTask : IUserTask
 {
-    public UserTask(string title, string description, DateTime date, bool isDone)
+    public UserTask(Guid id, string title, string description, DateTime date, bool isDone)
     {
+        Id = id;
         Title = title;
         Description = description;
         Date = date;
