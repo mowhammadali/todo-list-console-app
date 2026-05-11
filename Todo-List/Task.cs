@@ -2,6 +2,7 @@
 
 interface IUserTask
 {
+    public Guid Id { get; }
     public string Title { get; }
     public string Description { get; }
     public DateTime Date { get; }
@@ -18,6 +19,7 @@ class UserTask : IUserTask
         IsDone = isDone;
     }
 
+    public Guid Id { get; private set; }
     public string Title { get; private set; }
     public string Description { get; private set; }
     public DateTime Date { get; private set; }
