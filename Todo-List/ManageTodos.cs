@@ -2,13 +2,13 @@
 
 enum UserOptions
 {
-    A = 1,
-    B = 2,
-    C = 3,
-    D = 4,
+    Show = 1,
+    Add = 2,
+    Remove = 3,
+    RemoveAll = 4,
 }
 
-class ManageTodos
+static class ManageTodos
 {
     static public void ShowOptions()
     {
@@ -18,7 +18,7 @@ class ManageTodos
         Console.Write("3.Remove a todo  4.Remove all todos");
         Console.WriteLine();
         Console.Write("Enter option: ");
-        
+
         string option = Console.ReadLine();
         CheckOptionInput(option);
     }
@@ -29,32 +29,55 @@ class ManageTodos
         {
             switch (optionInt)
             {
-                case (int)UserOptions.A:
-                    Console.WriteLine("A");
+                case (int)UserOptions.Show:
+                    TodoList.ShowTodos();
+                    ShowOptions();
                     break;
-                case (int)UserOptions.B:
-                    Console.WriteLine("B");
+                case (int)UserOptions.Add:
+                    TodoList.AddTodo(CreateTodo());
+                    ShowOptions();
                     break;
-                case (int)UserOptions.C:
+                case (int)UserOptions.Remove:
                     Console.WriteLine("C");
                     break;
-                case (int)UserOptions.D:
+                case (int)UserOptions.RemoveAll:
                     Console.WriteLine("D");
                     break;
                 default:
-                    ReinvokeShowOptions("Invalid option");
+                    ReinvokeShowOptions("***Invalid option***");
                     break;
             }
         }
         else
         {
-            ReinvokeShowOptions("Invalid option");
+            ReinvokeShowOptions("***Invalid option***");
         }
     }
 
     static private void ReinvokeShowOptions(string message)
     {
+        Console.WriteLine();
         Console.WriteLine(message);
+        Console.WriteLine();
         ShowOptions();
+    }
+
+    static private UserTask CreateTodo()
+    {
+        Console.Write("Enter your title: ");
+        string title = Console.ReadLine();
+
+        Console.WriteLine();
+
+        Console.Write("Enter your description: ");
+        string description = Console.ReadLine();
+
+        Console.WriteLine();
+
+        Guid id = Guid.NewGuid();
+
+        UserTask task = new UserTask(id, title, description, DateTime.Now, false);
+
+        return task;
     }
 }

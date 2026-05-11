@@ -1,29 +1,35 @@
-﻿namespace TodoApp.TodoList;
+﻿namespace TodoApp.List;
 
-interface ITodoList
+static class TodoList
 {
-    public List<UserTask> todos { get; }
+    static private List<UserTask> todos { get; } = new List<UserTask>();
 
-    public void AddTodo(UserTask task);
-    public void RemoveTodo(int todoNumber);
-    public void RemoveAllTodos();
-}
+    static public void ShowTodos()
+    {
+        if (todos.Count == 0)
+        {
+            Console.WriteLine("No tasks to show");
+        }
+        else
+        {
+            foreach (var task in todos)
+            {
+                Console.WriteLine(task);
+            }
+        }
+    }
 
-class TodoList : ITodoList
-{
-    public List<UserTask> todos { get; }
-
-    public void AddTodo(UserTask task)
+    static public void AddTodo(UserTask task)
     {
         todos.Add(task);
     }
 
-    public void RemoveTodo(int todoNumber)
+    static public void RemoveTodo(int todoNumber)
     {
         todos.RemoveAt(todoNumber - 1);
     }
 
-    public void RemoveAllTodos()
+    static public void RemoveAllTodos()
     {
         todos.Clear();
     }
