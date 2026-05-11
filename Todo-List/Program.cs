@@ -1,1 +1,9 @@
-﻿Console.WriteLine("Hello world");
+﻿namespace TodoApp;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        
+    }
+}
